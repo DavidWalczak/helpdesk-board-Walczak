@@ -25,26 +25,29 @@ export default function Board() {
   const [queue, setQueue] = useState({});
 
   // fetch tickets on mount
-  useEffect(() => {
-    let mounted = true;
-    setLoading(true);
-    fetch('/api/tickets')
-      .then((r) => {
-        if (!r.ok) throw new Error('Network error');
-        return r.json();
-      })
-      .then((data) => {
-        if (!mounted) return;
-        setTickets(data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        if (!mounted) return;
-        setError(err.message || 'Unable to load');
-        setLoading(false);
-      });
-    return () => { mounted = false; };
-  }, []);
+    useEffect(() => {
+        let mounted = true;
+        setLoading(true);
+        fetch('/api/tickets')
+            .then((r) => {
+                if (!r.ok) throw new Error(`HTTP ${r.status}`);
+                return r.json();
+            })
+            .then((data) => {
+                if (!mounted) return;
+                console.log('Fetched tickets:', data); // debug
+                setTickets(data || []);
+                setLoading(false);
+            })
+            .catch((err) => {
+                if (!mounted) return;
+                console.error('Error fetching tickets:', err);
+                setError(err.message || 'Unable to load');
+                setTickets([]); // ensures no undefined
+                setLoading(false);
+        });
+        return () => { mounted = false; };
+    }, []);
 
   // simulate live updates every 6-10s (recursive timeout)
   const liveRef = useRef(null);
