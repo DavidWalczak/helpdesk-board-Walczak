@@ -7,9 +7,7 @@ export default function Page() {
       <header>
         <h1>Support Ticket Board</h1>
       </header>
-
       <Board />
     </main>
   );
 }
-
