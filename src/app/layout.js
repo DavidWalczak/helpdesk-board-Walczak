@@ -1,5 +1,5 @@
 // Root Layout — imports global CSS so styles apply site-wide
-import './styles/globals.css';
+import './globals.css';
 
 export const metadata = {
   title: 'Ticket Board',
