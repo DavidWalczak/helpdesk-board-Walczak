@@ -26,14 +26,19 @@ body{
   padding:28px;
 }
 
-main{ max-width:1200px; margin:0 auto; }
+main{
+  max-width:1200px;
+  margin:0 auto;
+}
 
 h1{
   font-size:28px;
   margin:0 0 18px 0;
   letter-spacing:-0.3px;
+  color:linear-gradient(90deg,var(--accent),var(--accent-2));
 }
 
+/* Layout grid used by Board (section element) */
 .board-root{
   display:grid;
   grid-template-columns: 1fr 320px;
@@ -48,6 +53,7 @@ h1{
   margin-bottom:12px;
 }
 
+/* Panel / card styles */
 .panel{
   background: linear-gradient(180deg,var(--card), rgba(255,255,255,0.02));
   border-radius:var(--radius);
@@ -56,11 +62,13 @@ h1{
   border:1px solid rgba(255,255,255,0.03);
 }
 
+/* Ticket list container */
 .ticket-list{
   display:grid;
   gap:12px;
 }
 
+/* Single ticket card */
 .ticket-card{
   display:flex;
   flex-direction:column;
@@ -128,17 +136,40 @@ button[disabled]{opacity:.6; cursor:not-allowed}
 .btn-danger{background: linear-gradient(90deg,var(--danger), #ff7b7b); color:white}
 .btn-ghost{background:transparent; border:1px solid rgba(255,255,255,0.03)}
 
+/* Filters and inputs */
 label{display:inline-block}
 label span{display:block;font-size:12px;color:var(--muted);margin-bottom:6px}
-select, input[type='search']{
-  padding:8px 10px;
-  border-radius:8px;
-  border:1px solid rgba(255,255,255,0.04);
-  background: rgba(255,255,255,0.02);
-  color:var(--text);
-}
-input::placeholder{color:rgba(255,255,255,0.3)}
 
+/* Updated dropdown / select styles */
+select, input[type='search'] {
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  background: rgba(255, 255, 255, 0.06);
+  color: #e6eef6; /* high contrast */
+  font-size: 14px;
+  appearance: none; /* optional: clean arrow */
+}
+
+select option {
+  background-color: #0b1220;
+  color: #e6eef6;
+}
+
+select:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+select:hover, select:active {
+  background: rgba(255,255,255,0.1);
+  color: #ffffff;
+}
+
+input::placeholder{color:rgba(255,255,255,0.4)}
+
+/* Status message styles */
 .status-message{
   margin:12px 0;
   padding:12px;
@@ -148,6 +179,7 @@ input::placeholder{color:rgba(255,255,255,0.3)}
 }
 .status-message.error{color:var(--danger)}
 
+/* My Queue Summary */
 .aside-panel{
   position:sticky;
   top:28px;
@@ -165,19 +197,24 @@ input::placeholder{color:rgba(255,255,255,0.3)}
 
 .empty-message{color:var(--muted);font-size:13px;margin-top:8px}
 
+/* responsive */
 @media (max-width:880px){
   .board-root{grid-template-columns: 1fr;}
   .aside-panel{position:relative; top:auto}
 }
 
+/* utility */
 .small{font-size:12px;color:var(--muted)}
 
+/* subtle animations */
 @keyframes pulseAccent{
   0%{box-shadow:0 0 0 0 rgba(96,165,250,0.18)}
   70%{box-shadow:0 0 0 10px rgba(96,165,250,0)}
   100%{box-shadow:0 0 0 0 rgba(96,165,250,0)}
 }
 
+/* Accessibility focus */
 :focus{outline:2px solid rgba(96,165,250,0.18);outline-offset:3px}
+
 
 
